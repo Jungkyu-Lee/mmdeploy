@@ -152,14 +152,15 @@ class End2EndModel(BaseBackendModel):
 
             gt_instances = data_sample.gt_instances
             # convert keypoint coordinates from input space to image space
-            # if convert_coordinate:
-                # input_size = data_sample.metainfo['input_size']
-                # input_center = data_sample.metainfo['input_center']
-                # input_scale = data_sample.metainfo['input_scale']
-                # keypoints = pred_instances.keypoints
-                # keypoints = keypoints / input_size * input_scale
-                # keypoints += input_center - 0.5 * input_scale
-                # pred_instances.keypoints = keypoints
+            if convert_coordinate:
+                print('data_sample.metainfo', data_sample.metainfo)
+                input_size = data_sample.metainfo['input_size']
+                input_center = data_sample.metainfo['input_center']
+                input_scale = data_sample.metainfo['input_scale']
+                keypoints = pred_instances.keypoints
+                keypoints = keypoints / input_size * input_scale
+                keypoints += input_center - 0.5 * input_scale
+                pred_instances.keypoints = keypoints
 
             pred_instances.bboxes = gt_instances.bboxes
             pred_instances.bbox_scores = gt_instances.bbox_scores
