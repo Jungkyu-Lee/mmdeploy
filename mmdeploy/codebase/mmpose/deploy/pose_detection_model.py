@@ -152,6 +152,7 @@ class End2EndModel(BaseBackendModel):
 
             gt_instances = data_sample.gt_instances
             print('pred_instances', pred_instances)
+            print('gt_instances', gt_instances)
             # convert keypoint coordinates from input space to image space
             if convert_coordinate:
                 print('data_sample.metainfo', data_sample.metainfo)
